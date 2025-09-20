@@ -1,11 +1,11 @@
-import eslintPluginJest from 'eslint-plugin-jest'
+import eslintPluginVitest from 'eslint-plugin-vitest'
 
 import { rulesDefault, ignores } from '@monorepo-template/config/eslint'
 
 export default {
   ignores,
   plugins: {
-    jest: eslintPluginJest,
+    vitest: eslintPluginVitest,
   },
   rules: {
     ...rulesDefault,

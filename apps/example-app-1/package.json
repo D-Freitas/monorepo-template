@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node out/index.cjs",
     "build": "node esbuild.config.js",
-    "test": "npx jest",
+    "test": "npx vitest run",
     "lint": "npx eslint *.js",
     "fix": "npx eslint --fix *.js"
   }
