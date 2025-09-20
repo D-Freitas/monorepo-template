@@ -1,6 +1,6 @@
 # Node.js Monorepo Template
 
-A modern, production-ready monorepo template built with **pnpm workspaces**, **Turbo**, and **ES modules**. This template provides a solid foundation for building scalable JavaScript/TypeScript projects with shared configurations, optimized caching, and standardized tooling.
+A modern, production-ready monorepo template built with **pnpm workspaces**, **Turbo**, and **ES modules**. This template provides a solid foundation for building scalable JavaScript/TypeScript projects with shared configurations, optimized caching, and modern tooling including **Vitest** for testing and **Biome** for linting and formatting.
 
 ## 🏗️ Architecture
 
@@ -14,20 +14,20 @@ monorepo-template/
 ├── apps/
 │   └── example-app-1/           # Example application
 │       ├── index.js             # Main application file
-│       ├── jest.config.js        # Jest configuration
-│       ├── babel.config.js       # Babel configuration for tests
+│       ├── vitest.config.js     # Vitest configuration
+│       ├── esbuild.config.js    # ESBuild configuration
 │       └── tests/               # Test suites
 ├── packages/
 │   ├── config/                  # Shared configurations
-│   │   ├── babel/               # Babel presets
 │   │   ├── esbuild/             # ESBuild configurations
 │   │   ├── biome/               # Biome linting and formatting rules
-│   │   └── jest/                # Jest configurations
+│   │   └── vitest/              # Vitest configurations
 │   └── shared/                  # Shared utilities and modules
 │       └── example-module-1/    # Example shared module
 ├── package.json                 # Root package configuration
 ├── pnpm-workspace.yaml         # pnpm workspace configuration
 ├── turbo.json                  # Turbo build system configuration
+├── biome.json                  # Biome configuration
 └── .gitignore                  # Git ignore rules
 ```
 
@@ -57,11 +57,14 @@ pnpm test                    # Run tests with intelligent caching
 pnpm lint                    # Lint code with caching
 pnpm fix                     # Auto-fix linting issues
 pnpm build                   # Build all applications
+pnpm format                  # Format code with Biome
+pnpm check                   # Check code with Biome
 
 # Force execution (ignore cache)
 pnpm test:all                # Run all tests, ignore cache
 pnpm lint:all                # Lint all files, ignore cache
 pnpm build:all               # Build all apps, ignore cache
+pnpm fix:all                 # Fix all files, ignore cache
 
 # Workspace-specific commands
 pnpm test --filter=example-app-1     # Test specific workspace
@@ -114,13 +117,14 @@ pnpm test:all                # Uses --force flag
 
 ## 🧪 Testing
 
-### Jest Configuration
+### Vitest Configuration
 
 Tests are configured with **ES modules support** and **workspace resolution**:
 
-- **Babel transformation** for ES modules compatibility
+- **Native ES modules** support without transformation
 - **Module mapping** for workspace imports
-- **Shared configuration** via `@monorepo-template/config/jest`
+- **Shared configuration** via `@monorepo-template/config/vitest`
+- **Fast execution** with Vite's bundling
 
 ### Running Tests
 
@@ -136,6 +140,9 @@ pnpm test -- --coverage
 
 # Watch mode
 pnpm test -- --watch
+
+# UI mode (interactive)
+pnpm test -- --ui
 ```
 
 ### Test Example
@@ -171,11 +178,14 @@ Use workspace protocol for internal dependencies:
 Access shared configurations via exports:
 
 ```javascript
-// Import shared Jest config
-import { nodeConfig } from '@monorepo-template/config/jest'
+// Import shared Vitest config
+import { nodeConfig } from '@monorepo-template/config/vitest'
 
 // Import shared Biome config
 import { biomeConfig } from '@monorepo-template/config/biome'
+
+// Import shared ESBuild config
+import { buildNodeConfig } from '@monorepo-template/config/esbuild'
 
 // Import shared utilities
 import { exampleModule1 } from '@monorepo-template/shared/example-module-1'
@@ -188,12 +198,14 @@ import { exampleModule1 } from '@monorepo-template/shared/example-module-1'
 - **Shared configuration** via `@monorepo-template/config/biome`
 - **Linting and formatting** in one tool
 - **Automatic fixing** with `pnpm fix`
+- **Fast execution** with native Rust implementation
 
-### Babel
+### Vitest
 
-- **ES modules** transformation for Jest
-- **Node.js** target for optimal compatibility
-- **Shared presets** for consistency
+- **Fast test execution** with Vite's bundling
+- **ES modules** native support
+- **Shared configuration** for consistency
+- **Watch mode** and **UI mode** for better DX
 
 ### ESBuild
 
@@ -225,13 +237,17 @@ Example:
 Override shared configurations locally:
 
 ```javascript
-// apps/my-app/jest.config.js
-import { nodeConfig } from '@monorepo-template/config/jest'
+// apps/my-app/vitest.config.js
+import { defineConfig } from 'vitest/config'
+import { nodeConfig } from '@monorepo-template/config/vitest'
 
-export default {
+export default defineConfig({
   ...nodeConfig,
-  testTimeout: 50_000  // Override default timeout
-}
+  test: {
+    ...nodeConfig.test,
+    timeout: 50_000  // Override default timeout
+  }
+})
 ```
 
 ## 📁 Package Structure
@@ -241,8 +257,7 @@ export default {
 ```text
 apps/example-app-1/
 ├── index.js              # Main application entry
-├── jest.config.js        # Test configuration
-├── babel.config.js       # Babel for ES modules
+├── vitest.config.js      # Test configuration
 ├── esbuild.config.js     # Build configuration
 └── tests/                # Test files
     └── *.spec.js
@@ -263,10 +278,9 @@ packages/shared/
 ```text
 packages/config/
 ├── package.json          # Configuration dependencies
-├── babel/                # Babel presets
 ├── esbuild/              # Build configurations
 ├── biome/                # Linting and formatting rules
-└── jest/                 # Test configurations
+└── vitest/               # Test configurations
 ```
 
 ## 🚀 Production Deployment
@@ -306,11 +320,12 @@ rm -rf .turbo cache node_modules && rm **/**/node_modules
 pnpm install
 ```
 
-**Jest ES Module Errors**:
+**Vitest ES Module Errors**:
 
-- Ensure `babel.config.js` exists in workspace
-- Check `moduleNameMapper` in Jest config
+- Ensure `vitest.config.js` exists in workspace
+- Check `resolve.alias` in Vitest config
 - Verify `"type": "module"` in `package.json`
+- Use `import` statements instead of `require`
 
 ### Performance Tips
 
