@@ -1,0 +1,12 @@
+{
+  "name": "@monorepo-template/shared",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shared utilities",
+  "type": "module",
+  "exports": {
+    "./example-module-1": {
+      "import": "./example-module-1/index.js"
+    }
+  }
+}
