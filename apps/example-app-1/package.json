@@ -1,0 +1,13 @@
+{
+  "name": "example-app-1",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node out/index.cjs",
+    "build": "node esbuild.config.js",
+    "test": "npx jest",
+    "lint": "npx eslint *.js",
+    "fix": "npx eslint --fix *.js"
+  }
+}
