@@ -5,14 +5,11 @@
   "description": "Configurations",
   "type": "module",
   "exports": {
-    "./babel": {
-      "import": "./babel/index.js"
+    "./biome": {
+      "import": "./biome/index.js"
     },
     "./esbuild": {
       "import": "./esbuild/index.js"
-    },
-    "./biome": {
-      "import": "./biome/index.js"
     },
     "./vitest": {
       "import": "./vitest/index.js"
