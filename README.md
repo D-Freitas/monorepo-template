@@ -14,8 +14,9 @@ monorepo-template/
 ├── apps/
 │   └── example-app-1/           # Example application
 │       ├── index.js             # Main application file
-│       ├── jest.config.js       # Jest configuration
-│       ├── babel.config.js      # Babel configuration for tests
+│       ├── jest.config.js        # Jest configuration
+│       ├── babel.config.js       # Babel configuration for tests
+│       ├── eslint.config.js      # Linting rules
 │       └── tests/               # Test suites
 ├── packages/
 │   ├── config/                  # Shared configurations
