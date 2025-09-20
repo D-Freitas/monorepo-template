@@ -7,7 +7,7 @@
     "start": "node out/index.cjs",
     "build": "node esbuild.config.js",
     "test": "npx vitest run",
-    "lint": "npx eslint *.js",
-    "fix": "npx eslint --fix *.js"
+    "lint": "npx biome lint .",
+    "fix": "npx biome check --write ."
   }
 }

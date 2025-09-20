@@ -1,0 +1,41 @@
+export const biomeConfig = {
+  $schema: 'https://biomejs.dev/schemas/1.9.3/schema.json',
+  vcs: {
+    enabled: true,
+    clientKind: 'git',
+    useIgnoreFile: true,
+  },
+  files: {
+    ignoreUnknown: false,
+    ignore: ['node_modules/', 'dist/', 'cache/', '*.tar.zst'],
+  },
+  formatter: {
+    enabled: true,
+    indentStyle: 'space',
+    indentWidth: 2,
+    lineWidth: 80,
+  },
+  organizeImports: {
+    enabled: true,
+  },
+  linter: {
+    enabled: true,
+    rules: {
+      recommended: true,
+      style: {
+        noVar: 'warn',
+        useConst: 'warn',
+      },
+      correctness: {
+        noUnusedVariables: 'warn',
+      },
+    },
+  },
+  javascript: {
+    formatter: {
+      quoteStyle: 'single',
+      semicolons: 'asNeeded',
+      trailingCommas: 'es5',
+    },
+  },
+}

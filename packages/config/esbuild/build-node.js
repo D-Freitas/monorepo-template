@@ -14,10 +14,8 @@ export const buildNode = async ({ ...args }) => {
     outdir: './out',
     sourcemap: false,
     logLevel: 'info',
-    external: [
-      'chromedriver'
-    ],
+    external: ['chromedriver'],
     plugins: [rmOutDirPlugin()],
-    ...args
+    ...args,
   })
 }

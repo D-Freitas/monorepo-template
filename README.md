@@ -16,13 +16,12 @@ monorepo-template/
 │       ├── index.js             # Main application file
 │       ├── jest.config.js        # Jest configuration
 │       ├── babel.config.js       # Babel configuration for tests
-│       ├── eslint.config.js      # Linting rules
 │       └── tests/               # Test suites
 ├── packages/
 │   ├── config/                  # Shared configurations
 │   │   ├── babel/               # Babel presets
 │   │   ├── esbuild/             # ESBuild configurations
-│   │   ├── eslint/              # ESLint rules and settings
+│   │   ├── biome/               # Biome linting and formatting rules
 │   │   └── jest/                # Jest configurations
 │   └── shared/                  # Shared utilities and modules
 │       └── example-module-1/    # Example shared module
@@ -87,7 +86,7 @@ The `turbo.json` file defines caching strategies for different tasks:
     },
     "lint": {
       "cache": true,
-      "inputs": ["**/*.js", "**/*.json", "eslint.config.js"],
+      "inputs": ["**/*.js", "**/*.json", "biome.json"],
       "outputs": []
     }
   }
@@ -175,8 +174,8 @@ Access shared configurations via exports:
 // Import shared Jest config
 import { nodeConfig } from '@monorepo-template/config/jest'
 
-// Import shared ESLint config
-import { defaultRules } from '@monorepo-template/config/eslint'
+// Import shared Biome config
+import { biomeConfig } from '@monorepo-template/config/biome'
 
 // Import shared utilities
 import { exampleModule1 } from '@monorepo-template/shared/example-module-1'
@@ -184,10 +183,10 @@ import { exampleModule1 } from '@monorepo-template/shared/example-module-1'
 
 ## 🛠️ Development Tools
 
-### ESLint
+### Biome
 
-- **Shared rules** via `@monorepo-template/config/eslint`
-- **Jest plugin** for test files
+- **Shared configuration** via `@monorepo-template/config/biome`
+- **Linting and formatting** in one tool
 - **Automatic fixing** with `pnpm fix`
 
 ### Babel
@@ -245,7 +244,6 @@ apps/example-app-1/
 ├── jest.config.js        # Test configuration
 ├── babel.config.js       # Babel for ES modules
 ├── esbuild.config.js     # Build configuration
-├── eslint.config.js      # Linting rules
 └── tests/                # Test files
     └── *.spec.js
 ```
@@ -267,7 +265,7 @@ packages/config/
 ├── package.json          # Configuration dependencies
 ├── babel/                # Babel presets
 ├── esbuild/              # Build configurations
-├── eslint/               # Linting rules
+├── biome/                # Linting and formatting rules
 └── jest/                 # Test configurations
 ```
 

@@ -11,19 +11,17 @@
     "./esbuild": {
       "import": "./esbuild/index.js"
     },
-    "./eslint": {
-      "import": "./eslint/index.js"
+    "./biome": {
+      "import": "./biome/index.js"
     },
     "./vitest": {
       "import": "./vitest/index.js"
     }
   },
   "dependencies": {
+    "@biomejs/biome": "^1.9.3",
     "esbuild": "0.25.10",
     "fast-glob": "^3.3.3",
-    "prettier": "3.6.2",
-    "eslint": "9.35.0",
-    "eslint-plugin-vitest": "0.5.4",
     "vitest": "1.6.0"
   }
 }

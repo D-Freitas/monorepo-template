@@ -17,7 +17,9 @@
     "fix": "npx turbo run fix --cache-dir='./cache'",
     "fix:all": "npx turbo run fix --cache-dir='./cache' --force",
     "lint": "npx turbo run lint --cache-dir='./cache'",
-    "lint:all": "npx turbo run lint --cache-dir='./cache' --force"
+    "lint:all": "npx turbo run lint --cache-dir='./cache' --force",
+    "format": "npx biome format --write .",
+    "check": "npx biome check ."
   },
   "dependencies": {
     "@monorepo-template/shared": "workspace:*"

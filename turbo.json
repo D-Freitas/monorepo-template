@@ -22,7 +22,7 @@
     },
     "lint": {
       "cache": true,
-      "inputs": ["**/*.js", "**/*.json", "eslint.config.js"],
+      "inputs": ["**/*.js", "**/*.json", "biome.json"],
       "outputs": []
     }
   }
