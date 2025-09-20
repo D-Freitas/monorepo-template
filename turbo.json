@@ -1,0 +1,29 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "cache": false,
+      "outputs": ["apps/**/out/**"],
+      "dependsOn": []
+    },
+    "start": {
+      "cache": false,
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "cache": true,
+      "inputs": ["**/*.js", "**/*.json", "**/*.spec.js", "**/*.test.js"],
+      "dependsOn": []
+    },
+    "fix": {
+      "cache": true,
+      "outputs": ["apps/**/**/*.js"]
+    },
+    "lint": {
+      "cache": true,
+      "inputs": ["**/*.js", "**/*.json", "eslint.config.js"],
+      "outputs": []
+    }
+  }
+}
