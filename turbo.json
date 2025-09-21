@@ -4,8 +4,7 @@
   "tasks": {
     "build": {
       "cache": true,
-      "outputs": ["apps/**/out/**"],
-      "dependsOn": []
+      "outputs": ["apps/**/out/**"]
     },
     "start": {
       "cache": false,
@@ -13,8 +12,7 @@
     },
     "test": {
       "cache": true,
-      "inputs": ["**/*.js", "**/*.json", "**/*.spec.js", "**/*.test.js"],
-      "dependsOn": []
+      "inputs": ["**/*.js", "**/*.json", "**/*.spec.js", "**/*.test.js"]
     },
     "fix": {
       "cache": true,
@@ -22,8 +20,7 @@
     },
     "lint": {
       "cache": true,
-      "inputs": ["**/*.js", "**/*.json", "biome.json"],
-      "outputs": []
+      "inputs": ["**/*.js", "**/*.json", "biome.json"]
     }
   }
 }
